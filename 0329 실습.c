@@ -31,7 +31,7 @@ typedef struct SparseMatrix {
     int terms; // 항의 개수
 } SparseMatrix;
 
-SparseMatrix Change_matrix (int ar,int ac,int *a){
+SparseMatrix Change_matrix (int ar,int ac,int *a){ //변환 함수
     SparseMatrix b;
     int c = 0;
 
@@ -52,7 +52,7 @@ SparseMatrix Change_matrix (int ar,int ac,int *a){
     return b;
 }
 
-void Print_matrix(SparseMatrix a) {
+void Print_matrix(SparseMatrix a) { //출력 함수
     int in = 0;
     int zero = 0;
     for (int i = 0; i < a.rows; i++) {
@@ -67,7 +67,7 @@ void Print_matrix(SparseMatrix a) {
     }
 }
 
-SparseMatrix Add_matrix(SparseMatrix a, SparseMatrix b) {
+SparseMatrix Add_matrix(SparseMatrix a, SparseMatrix b) { //덧셈 함수
     SparseMatrix sum;
     int ia = 0, ib = 0, ic = 0;
     sum.rows = a.rows;
