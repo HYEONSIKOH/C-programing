@@ -21,6 +21,14 @@
 -함수호출하여 후위표기식을 계산하고 결과값을 출력한다.
 - 위의 두 과정에서, 스택의 동작이 화면에 출력되도록 하시오. */
 
+/* 
+    < 예제 >
+(1) (4+9-1)%(2+1)
+(2) 3+2^3^2–1
+(3) 3+4–2>2*3^2
+(4) 3+4–2>2*2^2&(5–3)%2<5*2
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX 100
@@ -56,7 +64,7 @@ void push(stacktype* s, char c) {
 
 }
 
-void push_2(stacktype* s, int c) {
+void push_2(stacktype* s, int c) { // int형 임시 스택
 	if (is_full(s)) {
 		printf("FULL");
 		exit(1);
@@ -75,7 +83,7 @@ element pop(stacktype* s) {
 		return s->data[(s->top)--];
 }
 
-int pop_2(stacktype* s) {
+int pop_2(stacktype* s) { // int형 임시 스택
 	if (is_empty(s)) {
 		printf("EMPTY");
 		exit(1);
@@ -86,7 +94,7 @@ int pop_2(stacktype* s) {
 	
 }
 
-element peak(stacktype* s) {
+element peak(stacktype* s) { 
 	if (is_empty(s))
 		return 2;
 	
@@ -94,7 +102,7 @@ element peak(stacktype* s) {
 		return s->data[s->top];
 }
 
-element peak_2(stacktype* s) {
+element peak_2(stacktype* s) { // int형 임시 스택
 	if (is_empty(s))
 		return 2;
 	
@@ -102,18 +110,19 @@ element peak_2(stacktype* s) {
 		return s->num[s->top];
 }
 
-int rank(char ch) {
+int rank(char ch) { // 연산 순위
 	switch (ch) {
 	case '(': return 0;
-	case '^': return 5;
-	case '*': case'/': case'%': return 4;
-	case '+': case'-': return 3;
-	case '<': case'>': return 2;
-	case '&': case'|': return 1;
+	case '^': return 6;
+	case '*': case'/': case'%': return 5;
+	case '+': case'-': return 4;
+	case '<': case'>': return 3;
+	case '&': return 2;
+	case '|': return 1;
 	}
 }
 
-void fix(char* str) {
+void fix(char* str) { // 중위에서 후위로 변환하는 함수
 	stacktype s;
 	init_stack(&s);
 
