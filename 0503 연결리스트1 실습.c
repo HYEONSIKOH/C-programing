@@ -46,28 +46,19 @@ ListNode* insert(ListNode* head, ListNode* pre, element value) { // 중간 노드 연
 ListNode* insert_node(ListNode* head, element item) { // 오름차순 노드 연결
     ListNode* p = head;
 
-    if (head == NULL) { // head가 비어 있을 때
-        head = insert_first(head, item);
-        return head;
-    }
-
-    if ((strcmp(head->data.name, item.name) >= 0)) head = insert_first(head, item); // head의 name 값이 item의 name 값보다 사전적으로 뒤일 때
+    if (head == NULL || (strcmp(head->data.name, item.name) >= 0)) head = insert_first(head, item); // head의 name 값이 item의 name 값보다 사전적으로 뒤일 때 , head의 값이 비어있을 때,
 
     else {
-        while (1) {
-            if (p->link == NULL) { // 끝까지 갔는데, 나보다 앞인 경우가 없을 때
+        while (p->link != NULL) {
+            if (strcmp(p->link->data.name, item.name) > 0) { // p의 name 값이 item의 name 값보다 사전적으로 뒤일 때
                 head = insert(head, p, item);
-                break;
-            }
-            else if (strcmp(p->link->data.name, item.name) > 0) { // p의 name 값이 item의 name 값보다 사전적으로 뒤일 때 
-                head = insert(head, p, item);
-                break;
+                return head;
             }
             p = p->link;
         }
+        head = insert(head, p, item); // 끝까지 갔는데, 사전적으로 뒤가 없을 때
+        return head;
     }
-
-    return head;
 }
 
 int list_length(ListNode* head) { // 노드의 개수를 반환하는 함수
