@@ -148,6 +148,16 @@ void fix(char* str) { // 중위에서 후위로 변환하는 함수
 				printf("%c를 push 했습니다.\n", ch);
 				push(&s, ch);
 			}
+
+			else if (ch == ')') {
+				while (peak(&s) != '(') {
+					printf("%c를 pop 했습니다.\n", peak(&s));
+					terms[index++] = pop(&s);
+				}
+
+				printf("%c를 pop 했습니다.\n", peak(&s));
+				pop(&s);
+			}
 				
 			else if (rank(peak(&s)) >= rank(ch) && ch != '(') { 
 				while (! is_empty(&s) && rank(peak(&s)) >= rank(ch)) { // 순서가 높은 연산식이 두개 이상일때
@@ -156,16 +166,6 @@ void fix(char* str) { // 중위에서 후위로 변환하는 함수
 				}
 				printf("%c를 push 했습니다.\n", ch);
 				push(&s, ch);
-			}
-
-			else if (ch == ')') {
-				while (peak(&s) != '(') {
-					printf("%c를 pop 했습니다.\n", peak(&s));
-					terms[index++] = pop(&s);
-				}
-					
-				printf("%c를 pop 했습니다.\n", peak(&s));
-				pop(&s);
 			}
 
 			else {
