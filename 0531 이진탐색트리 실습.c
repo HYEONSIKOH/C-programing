@@ -11,7 +11,7 @@
 (2) 이진탐색트리 각 노드의 데이터 필드는 예약어(문자열)과 출현빈도(정수)이다. (o)
 
 (3) c언어의 예약어들 중에서 다음 예약어들의 출현 빈도를 계산한다. (o)
-    {"break", "case", "do", "else", "for", "if", "int", "return", "switch", "while", "else if"}
+    {"break", "case","do","else","for","if","int","return","struct","switch","while"}
 
 (4) 입력파일을 차례로 읽으면서,
     - 처음 출현하는 예약어는 이진탐색트리에 삽입하고 출현빈도를 1로 초기화한다. (o)
@@ -130,6 +130,8 @@ TreeNode* delete_node(TreeNode* root, char* key) {
 
 		// 중위 순환시 후계 노드를 복사한다.
 		strcpy(root->res, temp->res);
+		root->number = temp->number;
+
 		// 중위 순회시 후계 노드를 삭제한다.
 		root->right = delete_node(root->right, temp->res);
 	}
@@ -181,7 +183,7 @@ int main(void) {
 	}
 
 	char* p = (char*)malloc(sizeof(char) * 1000);
-	char* str[] = { "break", "case", "do", "else", "for", "if", "int", "return", "switch", "while", "struct" };
+	char* str[] = { "break", "case","do","else","for","if","int","return","struct","switch","while" };
 
 	while (!feof(fp1)) { //EOF가 나올때까지 계속 돌린다.
 		fscanf(fp1, "%s ", p); // 공백 단위로 받아옴
