@@ -20,7 +20,7 @@ n과 b 값을 키보드 입력하되, 2진수부터 16진수까지 자유롭게 선택할 수 있도록 한다.
 
 // ================= 1번 함수 =================
 int max, min;
-int arr[10] = { 3,9,8,6,1,2,4,10,25,109 };
+int arr[10] = { 0, };
 void Max_Min(int a[]) {
 	max = a[0];
 	min = a[0];
@@ -103,6 +103,24 @@ void display_ord(TreeNode* t) { // 중위 순회 출력
 	}
 }
 
+TreeNode* delete_All(TreeNode* root) { // 노드 전체 free
+	if (root == NULL) return root;
+
+	root->left = delete_All(root->left);
+	if (root->left != NULL) {
+		free(root->left);
+		root->left = NULL;
+	}
+
+	root->right = delete_All(root->right);
+	if (root->right != NULL) {
+		free(root->right);
+		root->right = NULL;
+	}
+
+	return root;
+}
+
 void menu() {
 	printf("=================== [메뉴] ===================\n");
 	printf("1. 최대 최소 구하기\n");
@@ -127,7 +145,10 @@ int main() {
 		case 1:
 			printf("-----------------------------------------\n");
 			printf("배열: ");
-			for (int i = 0; i < 10; i++) printf("%d ", arr[i]);
+			for (int i = 0; i < 10; i++) {
+				arr[i] = rand() % 10 + 1;
+				printf("%d ", arr[i]);
+			}
 			printf("\n");
 			Max_Min(arr);
 			printf("\n최댓값: %d || 최솟값: %d\n", max, min);
@@ -169,6 +190,7 @@ int main() {
 			printf("높이 : %d\n", high(r));
 			printf("중위순회 : ");
 			display_ord(r);
+			delete_All(r);
 			printf("\n");
 			printf("\n");
 			break;
