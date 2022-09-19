@@ -12,6 +12,7 @@ main() : 함수에서는 빈 리스트에서 시작하여 아래와 같은 메뉴로 테스트
       - list_length( ) , 를 호출하여 현재 리스트에 연결된 노드의 개수를 계산
       - list_display( )를 호출하여 현재 리스트에 연결된 각 노드의 데이터를 출력*/
 
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
@@ -66,6 +67,7 @@ int list_length(ListNode* head) { // 노드의 개수를 반환하는 함수
     int count = 0;
 
     for (ListNode* p = head; p != NULL; p = p->link) count++;
+    
    
     return count;
 }
