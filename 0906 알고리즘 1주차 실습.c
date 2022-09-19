@@ -103,7 +103,7 @@ void display_ord(TreeNode* t) { // 중위 순회 출력
 	}
 }
 
-TreeNode* delete_All(TreeNode* root) { // 노드 전체 free
+TreeNode* delete_All(TreeNode* root) { // 노드 전체 삭제
 	if (root == NULL) return root;
 
 	root->left = delete_All(root->left);
