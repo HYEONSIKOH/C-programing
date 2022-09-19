@@ -1,28 +1,19 @@
 /*
-- C언어 소스코드 파일에 각 예약어들이 얼마나 자주 등장하는지를 계산하는 프로그램을 
+- C언어 소스코드 파일에 각 예약어들이 얼마나 자주 등장하는지를 계산하는 프로그램을
 이진탐색트리를 사용하여 구현하시오.
-
-
-
 (1) 입력 : 자신이 작성한 임의의 c 프로그램 소스파일을 "bst_in.txt"라고 파일명을 지정한다.
-    출력 : 출현한 예약어들과 출현빈도(예약어들의 오름차순) 화면 출력한다 (o).
-           또는 출력파일을 "bst_out.txt"로 생성한다. (o)
-
+	출력 : 출현한 예약어들과 출현빈도(예약어들의 오름차순) 화면 출력한다 (o).
+		   또는 출력파일을 "bst_out.txt"로 생성한다. (o)
 (2) 이진탐색트리 각 노드의 데이터 필드는 예약어(문자열)과 출현빈도(정수)이다. (o)
-
 (3) c언어의 예약어들 중에서 다음 예약어들의 출현 빈도를 계산한다. (o)
-    {"break", "case","do","else","for","if","int","return","struct","switch","while"}
-
+	{"break", "case","do","else","for","if","int","return","struct","switch","while"}
 (4) 입력파일을 차례로 읽으면서,
-    - 처음 출현하는 예약어는 이진탐색트리에 삽입하고 출현빈도를 1로 초기화한다. (o)
-    - 검색 중 이미 트리에 존재하는 예약어는 출현빈도를 1만큼 증가시킨다. (o)
-
+	- 처음 출현하는 예약어는 이진탐색트리에 삽입하고 출현빈도를 1로 초기화한다. (o)
+	- 검색 중 이미 트리에 존재하는 예약어는 출현빈도를 1만큼 증가시킨다. (o)
 (5) 완성된 이진탐색트리를 중위순회하면서 예약어들과 출현빈도를 함께 출력한다. (o)
-
 (6) 가장 자주 출현한 예약어(빈도수 최대값)가 무엇인지 찾아서 출력한다. (o)
-
-(7) 이진트리에 존재하는 예약어들을 임의 순서로 하나씩 삭제하면서 
-    중간 결과를 중위순회 결과로 화면에서 확인한다. (공백트리가 될 때까지) */
+(7) 이진트리에 존재하는 예약어들을 임의 순서로 하나씩 삭제하면서
+	중간 결과를 중위순회 결과로 화면에서 확인한다. (공백트리가 될 때까지) */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -31,11 +22,11 @@
 typedef struct TreeNode {
 	char res[1000];
 	int number;
-    struct TreeNode* left, * right;
+	struct TreeNode* left, * right;
 }TreeNode;
 
 TreeNode* r = NULL;
-TreeNode *maximum;
+TreeNode* maximum;
 int max;
 
 void display(TreeNode* t) { // 중위 순회 출력
@@ -46,12 +37,12 @@ void display(TreeNode* t) { // 중위 순회 출력
 	}
 }
 
-int compare(char *str, TreeNode* e2) {
+int compare(char* str, TreeNode* e2) {
 	return strcmp(str, e2->res);
 }
 
 // 검색 함수
-TreeNode* search(TreeNode* node, char *key) {
+TreeNode* search(TreeNode* node, char* key) {
 	if (node == NULL) return NULL;
 
 	if (strcmp(key, node->res) == 0) {
@@ -64,7 +55,7 @@ TreeNode* search(TreeNode* node, char *key) {
 }
 
 // 노드 생성 함수
-TreeNode* new_node(char *item) {
+TreeNode* new_node(char* item) {
 	TreeNode* temp = (TreeNode*)malloc(sizeof(TreeNode));
 	strcpy(temp->res, item);
 	temp->number = 1;
@@ -154,11 +145,11 @@ TreeNode* find_max(TreeNode* node) {
 	return maximum;
 }
 
-void inorder_fprintf(TreeNode* p,FILE * fp2) {
+void inorder_fprintf(TreeNode* p, FILE* fp2) {
 	if (p != NULL) {
-		inorder_fprintf(p->left,fp2);
-		fprintf(fp2,"[%s : %d]\n", p->res, p->number);
-		inorder_fprintf(p->right,fp2);
+		inorder_fprintf(p->left, fp2);
+		fprintf(fp2, "[%s : %d]\n", p->res, p->number);
+		inorder_fprintf(p->right, fp2);
 	}
 }
 
