@@ -3,6 +3,7 @@
  +, -, *, /, ^(거듭제곱) >, <, =(EQ), & (AND), | (OR)
  (예) 3 4 + 2 - 2 2 2 ^ * > 7 3 – 2 / 5 2 * &                  */
 
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
