@@ -5,13 +5,12 @@
 4. 자식이 하나만 있는 노드의 개수
 5. 두 개의 이진트리가 동일한지 판단하는 함수 0 또는 1 반환
 6. 이진트리를 복사하여 동일한 트리를 반환하는 함수
-
    - 구조가 같고 대응되는 노드들이 같은 데이터를 갖는 트리
    - 위 5의 함수를 이용하여 복사한 트리가 원래의 트리와 동일한지 확인*/
 #include <stdio.h>
 #include <stdlib.h>
 
-//트리노드 정의
+   //트리노드 정의
 typedef struct TreeNode {
 	int data;
 	struct TreeNode* left, * right;
@@ -49,7 +48,7 @@ TreeNode k5 = { 20, &k3, &k4 };
 TreeNode k6 = { 15, &k2, &k5 };
 TreeNode* kroot = &k6;
 
-TreeNode *max;
+TreeNode* max;
 
 int count = 0;
 int MAX;
@@ -119,7 +118,7 @@ int one_node(TreeNode* t) {
 }
 
 // 두개의 트리가 같은지 아닌지
-int equal_tree(TreeNode* n,TreeNode * e) {
+int equal_tree(TreeNode* n, TreeNode* e) {
 	if (n != NULL && e != NULL) {
 		if (n->data != e->data) return 0;
 		if (equal_tree(n->left, e->left) && equal_tree(n->right, e->right)) return 1;
@@ -132,7 +131,7 @@ int equal_tree(TreeNode* n,TreeNode * e) {
 // 트리 복사
 TreeNode* copy_tree(TreeNode* n) {
 	TreeNode* temp = (TreeNode*)malloc(sizeof(TreeNode));
-	
+
 	if (n != NULL) {
 		temp->left = copy_tree(n->left);
 		temp->right = copy_tree(n->right);
@@ -202,7 +201,7 @@ int main(void) {
 				printf("후위: ");
 				post(nroot);
 				printf("\n");
-				
+
 				break;
 
 			case 2:
@@ -364,5 +363,3 @@ int main(void) {
 	free(temp);
 	return 0;
 }
-
-
