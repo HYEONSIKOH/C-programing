@@ -45,7 +45,6 @@ int Binary_Search(int* arr, int size, int num) {
 	int e = size - 1;
 	int m;
 	cnt = 0;
-
 	while (e >= s) {
 		m = (s + e) / 2;
 		cnt++;
