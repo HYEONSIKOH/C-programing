@@ -67,7 +67,7 @@ int partition1(int start, int end) {
 		if (arr[i] < p)
 			swap(i, j++);
 
-	swap(j, end);
+	swap(j, end); // 피봇 위치 스왑
 	print(start, end, j);
 	return j; // mid값을 반환하기 위해!
 }
