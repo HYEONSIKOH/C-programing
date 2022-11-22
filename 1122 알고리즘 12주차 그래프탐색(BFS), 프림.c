@@ -263,8 +263,6 @@ void init() {
 
 // ===================== [3¹ø ÇÔ¼ö] =====================
 int dist[100];
-int ans[100] = { 0, };
-int cnt = 0;
 
 int get_min_v(int n) {
     int v;
