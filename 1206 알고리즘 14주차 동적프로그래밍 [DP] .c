@@ -88,14 +88,12 @@ int Q2(int y,int x) {
 }
 
 void Q3() {
-    dp[0][0] = arr[0][0];
+    dp[1][1] = arr[1][1];
 
-    for (int i = 0; i < MAX; i++) {
-        for (int j = 0; j < MAX; j++) {
+    for (int i = 1; i < MAX; i++) {
+        for (int j = 1; j < MAX; j++) {
             int cost = arr[i][j];
-            if (i == 0) dp[i][j] = max(cost, dp[i][j - 1] + cost);
-            else if (j == 0) dp[i][j] = max(cost, dp[i - 1][j] + cost);
-            else if (i != 0 && j != 0) dp[i][j] = max(dp[i][j - 1] + cost, max(dp[i - 1][j] + cost, dp[i - 1][j - 1] + cost));
+            dp[i][j] = max(dp[i][j - 1] + cost, max(dp[i - 1][j] + cost, dp[i - 1][j - 1] + cost));
         }
     }
 }
@@ -194,18 +192,25 @@ void Q7_DP(int n) {
     for (int i = 1; i <= index; i++) {
         for (int j = 1; j <= 3; j++) {
             if (d[j] <= s[0][i] && s[4][i - (d[j] / 10)] + 1 < s[4][i]) {
+                // s[0][i] : 우표가격
+                // s[1][i] : 80원 개수
+                // s[2][i] : 50원 개수
+                // s[3][i] : 10원 개수
+                // s[4][i] : 우표 총 개수
 
-                s[4][i] = s[4][i - (d[j] / 10)] + 1; // 우표 총 개수
-
-                s[3][i] = s[3][i - (d[j] / 10)]; // 10원짜리
-                s[2][i] = s[2][i - (d[j] / 10)]; // 50원짜리
-                s[1][i] = s[1][i - (d[j] / 10)]; // 80원짜리
+                s[4][i] = s[4][i - (d[j] / 10)] + 1;
+                s[3][i] = s[3][i - (d[j] / 10)];
+                s[2][i] = s[2][i - (d[j] / 10)];
+                s[1][i] = s[1][i - (d[j] / 10)];
                 s[j][i]++;
+
+                printf("-------------------------\n");
+                printf("[%d원 DP] 총 %d장 => 80원: %2d개 || 50원: %2d개 || 10원: %2d개\n", s[0][i], s[4][i], s[1][i], s[2][i], s[3][i]);
             }
         }
     }
-    printf("-------------------------\n");
-    printf("[%d원 DP] 총 %d장 => 80원: %2d개 || 50원: %2d개 || 10원: %2d개\n", s[0][index], s[4][index], s[1][index], s[2][index], s[3][index]);
+    // printf("-------------------------\n");
+    // printf("[%d원 DP] 총 %d장 => 80원: %2d개 || 50원: %2d개 || 10원: %2d개\n", s[0][index], s[4][index], s[1][index], s[2][index], s[3][index]);
 }
 
 void Q7_Greedy(int n) {
